@@ -1,0 +1,63 @@
+:root {
+  color-scheme: light;
+  --paper: #f6f7f4;
+  --ink: #18251f;
+  --muted: #45564c;
+  --accent: #21563c;
+  --line: #cad5cc;
+  --night: #11271d;
+  font-family: system-ui, "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  line-height: 1.85;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--ink); background: var(--paper); }
+a { color: var(--accent); text-underline-offset: .24em; }
+a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+p { margin: 0 0 1rem; }
+h1, h2, h3 { line-height: 1.25; }
+h2 { font-size: clamp(1.35rem, 3vw, 1.85rem); }
+h3 { font-size: 1.1rem; }
+code { overflow-wrap: anywhere; }
+dd { margin: .2rem 0 1rem; }
+dt { font-weight: 700; }
+li + li { margin-top: .45rem; }
+.wrap { width: min(100% - 2rem, 68rem); margin-inline: auto; }
+.site-header { border-bottom: 1px solid var(--line); }
+.header-inner, .site-footer .wrap {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1.5rem;
+  padding-block: .8rem;
+}
+.header-inner { justify-content: space-between; }
+.brand { font-weight: 800; color: var(--ink); text-decoration: none; }
+nav { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; }
+nav a, .site-footer a { font-size: .92rem; }
+nav [aria-current] { font-weight: 750; }
+.hero {
+  margin-block: clamp(1.25rem, 5vw, 3.75rem);
+  padding: clamp(1.5rem, 6vw, 5rem);
+  background: var(--night);
+  color: #fafff9;
+  border-bottom: .4rem solid #80bd90;
+}
+.hero h1 { margin: .2em 0 .35em; font-size: clamp(2.65rem, 10vw, 7.3rem); letter-spacing: -.065em; line-height: .98; }
+.eyebrow { color: #a7deb2; font-size: .94rem; font-weight: 650; }
+.intro { font-size: clamp(1.05rem, 2vw, 1.22rem); max-width: 42rem; }
+.hero .intro { color: #e2efe5; }
+.features { margin-block: 2.5rem; }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .9rem; }
+.cards article, .notice { border: 1px solid var(--line); padding: 1.25rem; background: #fff; }
+.cards h3, .notice h2 { margin-top: 0; }
+.cards p, .notice p:last-child { margin-bottom: 0; }
+.notice { margin-block: 2.5rem; }
+.document { max-width: 50rem; padding-block: clamp(1.75rem, 5vw, 4rem); }
+.document h1 { margin: 0 0 1rem; font-size: clamp(1.95rem, 6vw, 3.65rem); letter-spacing: -.035em; }
+.document .intro, .cards p { color: var(--muted); }
+.document section { border-top: 1px solid var(--line); margin-top: 1.8rem; }
+.contact { border-left: .25rem solid var(--accent); padding-inline-start: .8rem; }
+.site-footer { border-top: 1px solid var(--line); }
+
+@media (max-width: 44rem) {
+  .cards { grid-template-columns: 1fr; }
+  .header-inner { align-items: flex-start; flex-direction: column; }
+}

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>プライバシーポリシー | YouTube Auto Studio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="index.html">YouTube Auto Studio</a>
+    <nav aria-label="サイトナビゲーション">
+      <a href="privacy.html" aria-current="page">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+    </nav>
+  </div></header>
+  <main class="wrap document">
+    <h1>プライバシーポリシー</h1>
+    <p class="intro">YouTube Auto Studioが利用者のPCとGoogle・YouTubeの間で取り扱うデータを説明します。</p>
+    <section>
+      <h2>取得するデータと利用目的</h2>
+      <p>本アプリは YouTube API Services の YouTube Data API v3 を使用します。Google OAuthで認証し、統合モードには <code>youtube.force-ssl</code> を使用します。</p>
+      <dl>
+        <dt>チャンネル名とチャンネルID</dt><dd>認証されたチャンネルを特定し、操作対象と照合します。</dd>
+        <dt>動画IDと投稿情報</dt><dd>動画のタイトル、説明、公開設定、公開予定日時、処理状態、APIから返る開示設定などを取得し、操作の確認、投稿履歴と状態の照合、重複投稿の防止に使用します。</dd>
+        <dt>OAuth認証情報</dt><dd>Googleから受け取るアクセストークンと更新トークンを、認証済みAPI操作とアクセストークンの更新に使用します。Googleのパスワードはアプリに入力しません。</dd>
+      </dl>
+      <p>Google APIから受け取った情報の利用は、Google API Services User Data PolicyのLimited Use要件に従い、ここに記載した機能に限ります。広告配信やデータ販売には使用しません。</p>
+    </section>
+    <section>
+      <h2>外部への通信</h2>
+      <p>認証・トークン更新はGoogleに接続します。チャンネル情報と動画状態はYouTube Data APIから取得します。利用者が承認したアップロードでは、動画ファイル、タイトル、説明、タグ、公開設定などをYouTubeへ送信し、予約操作では対象動画IDと公開予定日時などの設定をYouTubeへ送信します。</p>
+      <p>台本、音声、画像、字幕はPC上の制作ファイルとして扱います。出典取得機能を使う場合は、指定した参照先へHTTPリクエストを送信します。既定でローカル実行する制作サービスにYouTubeの認証情報は渡しません。</p>
+      <p>この紹介サイトにはログイン、フォーム、埋め込み動画、分析用スクリプトはありません。GitHub Pagesで閲覧する際のホスティング事業者による処理にはGitHubのプライバシー声明が適用されます。</p>
+    </section>
+    <section>
+      <h2>ローカル保存と認証情報の管理</h2>
+      <p>既定では、OAuthのトークンと利用者が用意するクライアント設定を <code>%LOCALAPPDATA%/YouTubeAutoStudio/credentials/</code> に保存します。OAuth認証はGoogleの画面で行い、アプリはローカルのループバックアドレスで認証結果を受け取ります。認証ファイルはPCの利用者が管理し、共有フォルダーや公開リポジトリに置かないでください。</p>
+      <p>チャンネル情報、動画ID、投稿・予約情報、承認記録、取得したAPI応答は、機能によって <code>upload_state/</code> 内のSQLiteデータベースやJSON、<code>output/</code> 内の関連記録などに保存されます。制作ファイルもPCに保存されます。</p>
+      <p>管理対象の投稿状態とチャンネル取得情報には取得日時を記録します。同意済みのダッシュボードを起動している間は起動時と日次で点検します。投稿状態は取得から29日経過した時点で再取得の対象になり、30日経過して再取得できない取得情報は削除します。チャンネル取得情報は30日経過時に更新または削除します。取得日時がない旧記録は点検時に更新または削除します。ダッシュボードの停止中は、期限内にCLIで点検してください。制作成果物、個別の承認記録、再送防止用のローカル識別情報はこの期限処理と分けています。</p>
+    </section>
+    <section>
+      <h2>アクセス権の取り消しとデータの削除</h2>
+      <ol>
+        <li>ダッシュボードの「YouTube APIの利用とデータ管理」で、削除またはアクセス権取り消しの対象を表示します。対象を確認して実行すると、管理対象の取得情報を削除します。アクセス権取り消しを選んだ場合はGoogleに取り消しを要求し、成功後にローカルのトークンも削除します。</li>
+        <li><a href="https://security.google.com/settings/security/permissions">Googleアカウントのアクセス管理</a>でも、アプリに対応する接続を選んでアクセス権を削除できます。アプリの定期確認で失効が分かった場合は管理対象の取得情報を削除します。ローカルの削除操作も利用できます。</li>
+        <li>手動で書き出した報告書や関連JSON、バックアップ、旧タスクログは自動管理の対象外です。保存先を個別に確認し、対象の取得情報を削除してください。</li>
+      </ol>
+      <p>ローカルデータを削除してもYouTube側の動画や予約は削除されません。YouTube側での管理には <a href="https://studio.youtube.com/">YouTube Studio</a> を使用してください。</p>
+    </section>
+    <section id="contact">
+      <h2>お問い合わせ</h2>
+      <p>プライバシーに関する質問、苦情、削除依頼は、運営者へメールでご連絡ください。OAuthトークン、クライアントシークレット、非公開の動画ファイルは送付しないでください。</p>
+      <p class="contact"><a href="mailto:masuyuu0526hot@gmail.com">masuyuu0526hot@gmail.com</a></p>
+    </section>
+    <section>
+      <h2>関連ポリシー</h2>
+      <ul class="link-list">
+        <li><a href="https://policies.google.com/privacy?hl=ja">Google プライバシーポリシー</a></li>
+        <li><a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a></li>
+        <li><a href="https://developers.google.com/youtube/terms/developer-policies">YouTube API Services Developer Policies</a></li>
+        <li><a href="https://www.youtube.com/t/terms?hl=ja">YouTube 利用規約</a></li>
+        <li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub プライバシー声明</a></li>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap"><a href="index.html">ホーム</a><a href="terms.html">利用規約</a></div></footer>
+</body>
+</html>
